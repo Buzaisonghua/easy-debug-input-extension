@@ -1,0 +1,36 @@
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 18px;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0em;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: 0.1s;
+  outline: none;
+  -webkit-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+}
+.btn-default {
+  height: 32px;
+  color: #606266;
+  background-color: #fff;
+  border: 1px solid #dcdfe6;
+}
+
+.btn:hover {
+  color: #409eff;
+  border-color: rgb(197.7, 225.9, 255);
+  background-color: rgb(235.9, 245.3, 255);
+}
+.btn:active {
+  color: #409eff;
+  border-color: #409eff;
+  background-color: rgb(235.9, 245.3, 255);
+}

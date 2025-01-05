@@ -1,2 +1,2 @@
-# easy-debug-input-extension
+# easy-debuginput-extension
 浏览器简单调试文本框

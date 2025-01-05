@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "easy-debug-input-extension",
+  "version": "1.0.1",
+  "description": "插件的描述-前端开发简单调试文本框",
+  "icons": {
+    "16": "src/image/icon16.png",
+    "32": "src/image/icon16.png",
+    "48": "src/image/icon16.png",
+    "128": "src/image/icon128.png"
+  },
+  "permissions": ["tabs", "activeTab", "storage"],
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_title": "easy-debug-input-extension"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["./src/util/jquery-3.2.1.min.js", "./src/content/content.js"]
+    }
+  ],
+  "background": {
+    "service_worker": "./src/background/background.js"
+  }
+}
