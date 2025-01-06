@@ -10,14 +10,14 @@
     "128": "src/image/icon128.png"
   },
   "permissions": ["tabs", "activeTab", "storage"],
-  "host_permissions": ["http://*/*", "https://*/*"],
+  "host_permissions": ["<all_urls>"],
   "action": {
     "default_popup": "src/popup/popup.html",
     "default_title": "easy-debug-input-extension"
   },
   "content_scripts": [
     {
-      "matches": ["http://*/*", "https://*/*"],
+      "matches": ["<all_urls>"],
       "js": ["./src/util/jquery-3.2.1.min.js", "./src/content/content.js"]
     }
   ],
