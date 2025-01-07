@@ -7,6 +7,9 @@
 - 我们是否遇到过在表单开发时，需要频繁调整业务代码？热更新导致浏览器界面的文本框数据丢失。这时我们就需要重复操作，重新给浏览器页面文本框赋值。
 - 界面如果有多个文本框需要赋值时，这一系列操作是十分繁琐的，我们就可以借助此插件减去这一部分工作量
   ![usage](https://github.com/Buzaisonghua/easy-debug-input-extension/blob/main/public/use.gif)
+- 在待开发的页面中，给调试需要的文本卡框赋值
+- 点击插件中的写入缓存
+- 页面发生改变需要重新赋值时，点击导入缓存数据按钮
 
 ## 安装
 
@@ -25,3 +28,7 @@ git clone git@github.com:Buzaisonghua/easy-debug-input-extension.git
 - 导入插件
 - 直接导入整个文件夹即可
   ![usage](https://github.com/Buzaisonghua/easy-debug-input-extension/blob/main/public/add.gif)
+
+## 开发进度
+
+- 😊 实现基本运行逻辑
