@@ -16,11 +16,22 @@ function getViewsAllTextBox() {
 }
 
 /**
+ *
+ */
+function getSendMessage(data) {
+  chrome.runtime.sendMessage(data);
+}
+
+/**
  * 接收来自popup的消息
  */
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+  console.log('接收到了消息');
+
+  Message('成功消息！', 'success');
+  /** 页面的值缓存到插件中 */
   if (message.action === 'writeTextBoxValueStorageSendMsgPopup') {
-    chrome.runtime.sendMessage({
+    getSendMessage({
       action: 'writeTextBoxValueStorageSendMsgContent',
       data: getViewsAllTextBox(),
     });
