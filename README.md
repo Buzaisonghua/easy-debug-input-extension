@@ -1,6 +1,12 @@
 ## 简介
 
-[easy-debuginput-extension]()是一个浏览器插件，它主要作用是前端开发，调试表单页面时避免重复做输入操作，为开发减负。
+[easy-debuginput-extension](https://github.com/Buzaisonghua/easy-debug-input-extension)是一个浏览器插件，它主要作用是前端开发时，调试表单页面时避免重复做输入操作，为开发减负。
+
+## 使用
+
+- 我们是否遇到过在表单开发时，需要频繁调整业务代码？热更新导致浏览器界面的文本框数据丢失。这时我们就需要重复操作，重新给浏览器页面文本框赋值。
+- 界面如果有多个文本框需要赋值时，这一系列操作是十分繁琐的，我们就可以借助此插件减去这一部分工作量
+  ![usage](https://github.com/Buzaisonghua/easy-debug-input-extension/blob/main/public/use.gif)
 
 ## 安装
 
