@@ -2,7 +2,7 @@ function getStyle() {
   return `
 .message-container {
   position: fixed;
-  top: 120px;
+  top: 60px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 9999;

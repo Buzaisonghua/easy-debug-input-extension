@@ -55,3 +55,18 @@
 .item:active {
   background-color: transparent;
 }
+.disabled {
+  cursor: not-allowed;
+}
+.disabled:active {
+  background-color: #0d0d0d0f;
+}
+.disabled-tip {
+  text-align: center;
+  padding-top: 12px;
+  padding-bottom: 6px;
+  font-size: 12px;
+  color: #f56c6c;
+  text-decoration: underline;
+  cursor: pointer;
+}

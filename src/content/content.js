@@ -1,6 +1,28 @@
-/**
- * 获取当前页面所有的文本框
- */
+chrome.runtime.onConnect.addListener(function (port) {
+  port.onMessage.addListener(function (message) {
+    /** 页面的值缓存到插件中 */
+    if (message.action === 'writeTextBoxValueStorageSendMsgPopup') {
+      writeTextBoxValueStorage(port);
+    }
+    if (message.action === 'setTextBoxValueInStorageSendMsgPopup') {
+      setTextBoxValueInStorage(message);
+    }
+  });
+});
+
+/** 读取页面的input值，并返回给popup页面 */
+function writeTextBoxValueStorage(port) {
+  const allTextBox = getViewsAllTextBox();
+  console.log(allTextBox);
+  if (allTextBox.length === 0) {
+    Message('当前页面不存在文本框', 'error');
+    return;
+  }
+
+  port.postMessage({ data: allTextBox });
+  Message('缓存成功！', 'success');
+}
+/** 获取当前页面所有的文本框 */
 function getViewsAllTextBox() {
   const textBox = Array.from($('input').not('input[type="hidden"]'));
   return textBox.map((val) => ({
@@ -15,41 +37,13 @@ function getViewsAllTextBox() {
   }));
 }
 
-/**
- *
- */
-function getSendMessage(data) {
-  chrome.runtime.sendMessage(data);
+function setTextBoxValueInStorage(msg) {
+  if ($.type(msg.data) !== 'array') {
+    Message('当前页面无缓存数据', 'error');
+    return;
+  }
+  msg.data.forEach((val) => {
+    $(`#${val.id}`).attr('value', val.value);
+  });
+  Message('写入成功！', 'success');
 }
-
-/**
- * 接收来自popup的消息
- */
-chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-  console.log('接收到了消息');
-
-  Message('成功消息！', 'success');
-  /** 页面的值缓存到插件中 */
-  if (message.action === 'writeTextBoxValueStorageSendMsgPopup') {
-    getSendMessage({
-      action: 'writeTextBoxValueStorageSendMsgContent',
-      data: getViewsAllTextBox(),
-    });
-  }
-  if (message.action === 'setTextBoxValueInStorageSendMsgPopup') {
-    chrome.runtime.sendMessage({
-      action: 'setTextBoxValueInStorageSendMsgContent',
-    });
-  }
-  if (message.action === 'setTextBoxValueInStorageSendMsgBackground') {
-    console.log(message.data);
-    message.data.forEach((val) => {
-      $(`#${val.id}`).attr('value', val.value);
-    });
-  }
-  setTimeout(function () {
-    sendResponse({ result: 'Task completed' });
-  }, 1000);
-  // 必须返回 true，以表示响应是异步的
-  return true;
-});
