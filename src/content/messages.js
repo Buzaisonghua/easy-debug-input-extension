@@ -54,7 +54,7 @@ function getStyle() {
 }
 
 // 纯jQuery实现Message
-function Message(message, type = 'info', duration = 3000) {
+function Message(message, type = 'info', duration = 1500) {
   const box = $('<div class="message-container"></div>');
   const $message = $('<div class="message"></div>')
     .addClass(type)

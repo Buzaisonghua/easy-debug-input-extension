@@ -1,5 +1,7 @@
 const getTitle = () =>
   `easy-debug-input-extension-${initData.id}-${initData.url}`;
+
+/** 获取缓存中的数据 */
 function getStorage() {
   return new Promise((resolve, reject) => {
     const key = getTitle();
@@ -18,35 +20,28 @@ function setStorage(val) {
     console.log('Retrieved data:', result);
   });
 }
+
 /**
  * 告诉content-script获取当前标签页面的文本框，并将其缓存到storage中
  */
 $('#writeTextBoxValueStorage').on('click', function () {
-  console.log(initData);
   if (initData.disabled) return;
   const port = chrome.tabs.connect(initData.id);
   port.postMessage({ action: 'writeTextBoxValueStorageSendMsgPopup' });
   port.onMessage.addListener(function (res) {
-    console.log(res);
     const obj = {};
     obj[getTitle()] = res.data;
-    console.log(obj);
     setStorage(obj);
   });
 });
 $('#setTextBoxValueInStorage').on('click', function () {
-  setTextBoxValueInStorageSendMsg();
-});
-function setTextBoxValueInStorageSendMsg() {
+  if (initData.disabled) return;
   getStorage().then((res) => {
-    console.log('aaaas', res);
+    // 持久化通信
     const port = chrome.tabs.connect(initData.id);
     port.postMessage({
       action: 'setTextBoxValueInStorageSendMsgPopup',
       data: res,
     });
   });
-  // getSendMsg({
-  //   action: 'setTextBoxValueInStorageSendMsgPopup',
-  // });
-}
+});
